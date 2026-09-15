@@ -1,0 +1,9 @@
+{
+  "name": "@bhagi-geet/shared",
+  "version": "1.0.0",
+  "main": "src/types.ts",
+  "types": "src/types.ts",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
