@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const bhajan = await BhajansService.getBhajanById(req.params.id);
-    if (!bhajan) return res.status(404).json({ error: 'Bhajan not found' });
+    if (!bhajan || bhajan.status !== 'approved') return res.status(404).json({ error: 'Bhajan not found' });
     res.json(bhajan);
   } catch (error) {
     console.error(error);

@@ -9,66 +9,303 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
+const bajrangBaanLyrics = `दोहा :-
+निश्चय प्रेम प्रतीति ते, विनय करैं सनमान ।
+तेहि के कारज सकल शुभ, सिद्ध करें हनुमान ॥
+
+जय हनुमन्त संत हितकारी ।
+सुन लीजै प्रभु अरज हमारी ।।
+
+जन के काज बिलम्ब न कीजै ।
+आतुर दौरि महासुख दीजै ।।
+
+जैसे कूदी सिन्धु महि पारा ।
+सुरसा बदन पैठी विस्तारा ।।
+
+आगे जाय लंकिनी रोका ।
+मारेहु लात गई सुर लोका ।।
+
+जाय विभीषण को सुख दीन्हा ।
+सीता निरखि परम-पद लीना ।।
+
+बाग उजारि सिन्धु मह बोरा ।
+अति आतुर जमकातर तोरा ।।
+
+अक्षय कुमार मारि संहारा ।
+लूम लपेटि लंक को जारा ।।
+
+लाह समान लंक जरि गई ।
+जय-जय धुनि सुरपुर में भई ।।
+
+अब बिलम्ब केहि कारन स्वामी ।
+कृपा करहु उर अन्तर्यामी ।।
+
+जय जय लखन प्रान के दाता ।
+आतुर होई दु:ख करहु निपाता ।।
+
+जै गिरिधर जै जै सुख सागर ।
+सुर-समूह-समरथ भट-नागर॥
+
+ओम हनु हनु हनु हनुमंत हठीले ।
+बैरिहि मारु बज्र की कीले॥
+
+गदा बज्र लै बैरिहि मारो ।
+महाराज प्रभु दास उबारो ।।
+
+ओंकार हुंकार महाप्रभु धाओ ।
+बज्र गदा हनु विलम्ब न लाओ ।।
+
+ओम ह्नीं ह्नीं ह्नीं हनुमंत कपीसा ।
+ओम हुं हुं हुं हनु अरि उर-सीसा॥
+
+सत्य होहु हरी शपथ पायके ।
+राम दूत धरु मारू जायके
+
+जय जय जय हनुमन्त अगाधा ।
+दुःख पावत जन केहि अपराधा ।।
+
+पूजा जप-तप नेम अचारा ।
+नहिं जानत हो दास तुम्हारा ।।
+
+वन उपवन मग गिरि गृह मांहीं ।
+तुम्हरे बल हम डरपत नाहीं ।।
+
+पायं परौं कर जोरी मनावौं ।
+येहि अवसर अब केहि गोहरावौं ।।
+
+जय अंजनी कुमार बलवंता ।
+शंकर सुवन वीर हनुमंता ।।
+
+बदन कराल काल कुलघालक।
+राम सहाय सदा प्रतिपालक ।।
+
+भूत प्रेत पिसाच निसाचर।
+अगिन वैताल काल मारी मर ।।
+
+इन्हें मारु, तोहि शपथ राम की ।
+राखउ नाथ मरजाद नाम की ।।
+
+जनकसुता हरि दास कहावो ।
+ताकी शपथ विलम्ब न लावो ।।
+
+जै जै जै धुनि होत अकासा ।
+सुमिरत होत दुसह दुःख नासा ।।
+
+चरण शरण कर जोरि मनावौं ।
+यहि अवसर अब केहि गोहरावौं ।।
+
+उठु उठु चलु तोहि राम-दोहाई ।
+पायँ परौं, कर जोरि मनाई ।।
+
+ओम चं चं चं चं चपल चलंता ।
+ओम हनु हनु हनु हनु हनुमन्ता ।।
+
+ओम हं हं हाँक देत कपि चंचल ।
+ओम सं सं सहमि पराने खल-दल ।।
+
+अपने जन को तुरत उबारौ ।
+सुमिरत होय आनंद हमारौ ।।
+
+यह बजरंग बाण जेहि मारै।
+ताहि कहो फिर कोन उबारै ।।
+
+पाठ करै बजरंग बाण की ।
+हनुमत रक्षा करैं प्रान की ।।
+
+यह बजरंग बाण जो जापैं ।
+ताते भूत-प्रेत सब कापैं ।।
+
+धूप देय अरु जपै हमेशा ।
+ताके तन नहिं रहै कलेसा ।।
+
+दोहा : 
+प्रेम प्रतीतिहि कपि भजै, सदा धरै उर ध्यान ।
+तेहि के कारज सकल सुभ, सिद्ध करैं हनुमान ।।
+
+॥ समाप्त ॥`;
+
+const hanumanChalisaLyrics = `दोहा
+
+श्रीगुरु चरन सरोज रज, निजमन मुकुरु सुधारि।
+बरनउं रघुबर बिमल जसु, जो दायक फल चारि।।
+
+बुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार।
+बल बुधि बिद्या देहु मोहिं, हरहु कलेस बिकार।।
+
+चौपाई
+
+जय हनुमान ज्ञान गुन सागर।
+जय कपीस तिहुं लोक उजागर।।
+
+राम दूत अतुलित बल धामा।
+अंजनि-पुत्र पवनसुत नामा।।
+
+महाबीर बिक्रम बजरंगी।
+कुमति निवार सुमति के संगी।।
+
+कंचन बरन बिराज सुबेसा।
+कानन कुण्डल कुँचित केसा।।
+
+हाथ बज्र औ ध्वजा बिराजे।
+कांधे मूंज जनेउ साजे।।
+
+शंकर सुवन केसरी नंदन।
+तेज प्रताप महा जग वंदन।।
+
+बिद्यावान गुनी अति चातुर।
+राम काज करिबे को आतुर।।
+
+प्रभु चरित्र सुनिबे को रसिया।
+राम लखन सीता मन बसिया।।
+
+सूक्ष्म रूप धरि सियहिं दिखावा।
+बिकट रूप धरि लंक जरावा।।
+
+भीम रूप धरि असुर संहारे।
+रामचन्द्र के काज संवारे।।
+
+लाय सजीवन लखन जियाये।
+श्री रघुबीर हरषि उर लाये।।
+
+रघुपति कीन्ही बहुत बड़ाई।
+तुम मम प्रिय भरतहि सम भाई।।
+
+सहस बदन तुम्हरो जस गावैं।
+अस कहि श्रीपति कण्ठ लगावैं।।
+
+सनकादिक ब्रह्मादि मुनीसा।
+नारद सारद सहित अहीसा।।
+
+जम कुबेर दिगपाल जहां ते।
+कबि कोबिद कहि सके कहां ते।।
+
+तुम उपकार सुग्रीवहिं कीन्हा।
+राम मिलाय राज पद दीन्हा।।
+
+तुम्हरो मंत्र बिभीषन माना।
+लंकेश्वर भए सब जग जाना।।
+
+जुग सहस्र जोजन पर भानु।
+लील्यो ताहि मधुर फल जानू।।
+
+प्रभु मुद्रिका मेलि मुख माहीं।
+जलधि लांघि गये अचरज नाहीं।।
+
+दुर्गम काज जगत के जेते।
+सुगम अनुग्रह तुम्हरे तेते।।
+
+राम दुआरे तुम रखवारे।
+होत न आज्ञा बिनु पैसारे।।
+
+सब सुख लहै तुम्हारी सरना।
+तुम रच्छक काहू को डर ना।।
+
+आपन तेज सम्हारो आपै।
+तीनों लोक हांक तें कांपै।।
+
+भूत पिसाच निकट नहिं आवै।
+महाबीर जब नाम सुनावै।।
+
+नासै रोग हरे सब पीरा।
+जपत निरन्तर हनुमत बीरा।।
+
+संकट तें हनुमान छुड़ावै।
+मन क्रम बचन ध्यान जो लावै।।
+
+सब पर राम तपस्वी राजा।
+तिन के काज सकल तुम साजा।।
+
+और मनोरथ जो कोई लावै।
+सोई अमित जीवन फल पावै।।
+
+चारों जुग परताप तुम्हारा।
+है परसिद्ध जगत उजियारा।।
+
+साधु संत के तुम रखवारे।
+असुर निकन्दन राम दुलारे।।
+
+अष्टसिद्धि नौ निधि के दाता।
+अस बर दीन जानकी माता।।
+
+राम रसायन तुम्हरे पासा।
+सदा रहो रघुपति के दासा।।
+
+तुह्मरे भजन राम को पावै।
+जनम जनम के दुख बिसरावै।।
+
+अंत काल रघुबर पुर जाई।
+जहां जन्म हरिभक्त कहाई।।
+
+और देवता चित्त न धरई।
+हनुमत सेइ सर्ब सुख करई।।
+
+संकट कटै मिटै सब पीरा।
+जो सुमिरै हनुमत बलबीरा।।
+
+जय जय जय हनुमान गोसाईं।
+कृपा करहु गुरुदेव की नाईं।।
+
+जो सत बार पाठ कर कोई।
+छूटहि बन्दि महा सुख होई।।
+
+जो यह पढ़ै हनुमान चालीसा।
+होय सिद्धि साखी गौरीसा।।
+
+तुलसीदास सदा हरि चेरा।
+कीजै नाथ हृदय महं डेरा।।
+
+दोहा
+
+पवन तनय संकट हरन, मंगल मूरति रूप।
+राम लखन सीता सहित, हृदय बसहु सुर भूप।।
+
+॥ समाप्त ॥`;
+
+function parseLyrics(text: string) {
+  // Split by double newline to get paragraphs
+  return text.split('\\n\\n').map(p => ({
+    hindi: p.trim(),
+    english: ''
+  })).filter(p => p.hindi.length > 0);
+}
+
 const bhajans = [
   {
-    title: 'Om Jai Jagdish Hare',
-    language: 'both',
-    lyrics: [
-      { hindi: 'ॐ जय जगदीश हरे', english: 'Om Jai Jagdish Hare' },
-      { hindi: 'स्वामी जय जगदीश हरे', english: 'Swami Jai Jagdish Hare' },
-      { hindi: 'भक्त जनों के संकट', english: 'Bhakt Jano Ke Sankat' },
-      { hindi: 'दास जनों के संकट', english: 'Daas Jano Ke Sankat' },
-      { hindi: 'क्षण में दूर करे', english: 'Kshan Men Door Kare' },
-      { hindi: 'ॐ जय जगदीश हरे', english: 'Om Jai Jagdish Hare' }
-    ]
+    title: 'Bajrang Baan',
+    language: 'hi',
+    lyrics: parseLyrics(bajrangBaanLyrics)
   },
   {
-    title: 'Vaishnav Jan To',
-    language: 'both',
-    lyrics: [
-      { hindi: 'वैष्णव जन तो तेने कहिये जे', english: 'Vaishnav Jan To Tene Kahiye Je' },
-      { hindi: 'पीड परायी जाणे रे', english: 'Peed Paraayi Jaane Re' },
-      { hindi: 'पर दुःखे उपकार करे तो ये', english: 'Par Dukhe Upkaar Kare To Ye' },
-      { hindi: 'मन अभिमान न आणे रे', english: 'Man Abhimaan Na Aane Re' }
-    ]
-  },
-  {
-    title: 'Hanuman Chalisa (Starting Verses)',
-    language: 'both',
-    lyrics: [
-      { hindi: 'श्रीगुरु चरन सरोज रज', english: 'Shree Guru Charan Saroj Raj' },
-      { hindi: 'निज मनु मुकुरु सुधारि', english: 'Nij Manu Mukuru Sudhaari' },
-      { hindi: 'बरनउँ रघुबर बिमल जसु', english: 'Baranau Raghuvar Bimal Jasu' },
-      { hindi: 'जो दायकु फल चारि', english: 'Jo Daayaku Phal Chaari' },
-      { hindi: 'बुद्धिहीन तनु जानिके', english: 'Buddhiheen Tanu Jaanike' },
-      { hindi: 'सुमिरौं पवन-कुमार', english: 'Sumirau Pavan Kumar' },
-      { hindi: 'बल बुधि बिद्या देहु मोहिं', english: 'Bal Budhi Vidya Dehu Mohi' },
-      { hindi: 'हरहु कलेस बिकार', english: 'Harahu Kalesa Bikaar' }
-    ]
+    title: 'Hanuman Chalisa',
+    language: 'hi',
+    lyrics: parseLyrics(hanumanChalisaLyrics)
   }
 ];
 
 async function seed() {
-  console.log('Seeding bhajans...');
+  console.log('Seeding new detailed bhajans...');
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     
-    // Check if we already have bhajans
-    const { rows } = await client.query('SELECT count(*) FROM bhajans');
-    if (parseInt(rows[0].count) > 0) {
-      console.log('Bhajans already exist. Skipping seed.');
-    } else {
-      for (const bhajan of bhajans) {
+    // We will clear existing to insert the pure ones provided by user
+    // or just insert if they don't exist. Let's just insert them.
+    for (const bhajan of bhajans) {
+      // Check if it exists to avoid duplicates
+      const exists = await client.query('SELECT id FROM bhajans WHERE title = $1', [bhajan.title]);
+      if (exists.rows.length === 0) {
         await client.query(
-          `INSERT INTO bhajans (title, language, lyrics, added_by) VALUES ($1, $2, $3, $4)`,
+          \`INSERT INTO bhajans (title, language, lyrics, added_by, status) VALUES ($1, $2, $3, $4, 'approved')\`,
           [bhajan.title, bhajan.language, JSON.stringify(bhajan.lyrics), 'System']
         );
+        console.log(\`Inserted \${bhajan.title}\`);
+      } else {
+        console.log(\`\${bhajan.title} already exists. Skipping.\`);
       }
-      console.log('Successfully seeded bhajans!');
     }
     
     await client.query('COMMIT');
+    console.log('Successfully seeded bhajans!');
   } catch (error) {
     await client.query('ROLLBACK');
     console.error('Error during seed:', error);

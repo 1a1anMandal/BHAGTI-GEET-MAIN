@@ -9,6 +9,7 @@ export interface Bhajan {
   language: string;
   lyrics: LyricParagraph[];
   added_by?: string;
+  status?: string;
   created_at: string;
 }
 

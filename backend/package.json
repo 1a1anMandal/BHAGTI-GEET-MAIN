@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@bhagi-geet/shared": "workspace:*",
+    "@socket.io/redis-adapter": "^8.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "ioredis": "^6.0.0",
     "pg": "^8.11.3",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1"

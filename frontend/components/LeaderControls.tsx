@@ -3,7 +3,7 @@
 import { useRoomStore } from '../stores/roomStore';
 import { useLyricsStore } from '../stores/lyricsStore';
 import { getSocket } from '../lib/socket';
-import { ArrowLeft, ArrowRight, SkipForward } from 'lucide-react';
+import { ChevronUp, ChevronDown, CheckCircle2 } from 'lucide-react';
 
 export function LeaderControls() {
   const { roomCode, myRole } = useRoomStore();
@@ -16,7 +16,6 @@ export function LeaderControls() {
 
   const handleNext = () => {
     if (!roomCode) return;
-    // Auto finish if it's the last line
     if (currentBhajan && activeParaIdx === currentBhajan.lyrics.length - 1) {
       socket.emit('finish_bhajan', { roomCode });
     } else {
@@ -33,33 +32,32 @@ export function LeaderControls() {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 p-4 bg-bg/80 backdrop-blur-lg border-t border-white/10 z-40">
-      <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-[90%] z-50">
+      <div className="flex items-center justify-between bg-surface2/90 backdrop-blur-xl border border-white/10 rounded-full p-2 shadow-2xl shadow-primary/20">
         
-        <div className="flex gap-4">
-          <button 
-            onClick={handlePrev}
-            disabled={!currentBhajan || activeParaIdx === 0}
-            className="p-3 bg-surface border border-white/10 rounded-full hover:bg-white/10 transition-colors disabled:opacity-50"
-          >
-            <ArrowLeft size={24} />
-          </button>
-          
-          <button 
-            onClick={handleNext}
-            disabled={!currentBhajan}
-            className="px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-orange-600 transition-colors disabled:opacity-50 flex items-center gap-2"
-          >
-            Next Line <ArrowRight size={20} />
-          </button>
-        </div>
+        <button 
+          onClick={handlePrev}
+          disabled={!currentBhajan || activeParaIdx === 0}
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:pointer-events-none"
+        >
+          <ChevronUp size={24} />
+        </button>
+        
+        <button 
+          onClick={handleNext}
+          disabled={!currentBhajan}
+          className="flex-1 mx-2 h-12 bg-primary-gradient rounded-full text-black font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,122,0,0.4)] disabled:opacity-50"
+        >
+          {currentBhajan && activeParaIdx === currentBhajan.lyrics.length - 1 ? 'Finish Song' : 'Next Line'}
+        </button>
 
         <button 
           onClick={handleFinish}
           disabled={!currentBhajan}
-          className="px-4 py-3 bg-red-500/20 text-red-400 font-semibold rounded-full hover:bg-red-500/30 transition-colors disabled:opacity-50 flex items-center gap-2"
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 transition-colors disabled:opacity-30 disabled:pointer-events-none"
+          title="Force Finish"
         >
-          <SkipForward size={18} /> Finish Bhajan
+          <CheckCircle2 size={20} />
         </button>
 
       </div>

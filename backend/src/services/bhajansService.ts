@@ -3,18 +3,18 @@ import { Bhajan, LyricParagraph } from '@bhagi-geet/shared';
 
 export class BhajansService {
   static async getAllBhajans(search?: string, lang?: string): Promise<Bhajan[]> {
-    let query = 'SELECT * FROM bhajans';
-    const params: any[] = [];
+    let query = 'SELECT * FROM bhajans WHERE status = $1';
+    const params: any[] = ['approved'];
 
     if (search) {
-      query += ` WHERE title ILIKE $1`;
+      query += ` AND title ILIKE $2`;
       params.push(`%${search}%`);
       if (lang && lang !== 'all') {
-        query += ` AND language = $2`;
+        query += ` AND language = $3`;
         params.push(lang);
       }
     } else if (lang && lang !== 'all') {
-      query += ` WHERE language = $1`;
+      query += ` AND language = $2`;
       params.push(lang);
     }
 
