@@ -295,12 +295,12 @@ async function seed() {
       const exists = await client.query('SELECT id FROM bhajans WHERE title = $1', [bhajan.title]);
       if (exists.rows.length === 0) {
         await client.query(
-          \`INSERT INTO bhajans (title, language, lyrics, added_by, status) VALUES ($1, $2, $3, $4, 'approved')\`,
+          `INSERT INTO bhajans (title, language, lyrics, added_by, status) VALUES ($1, $2, $3, $4, 'approved')`,
           [bhajan.title, bhajan.language, JSON.stringify(bhajan.lyrics), 'System']
         );
-        console.log(\`Inserted \${bhajan.title}\`);
+        console.log(`Inserted ${bhajan.title}`);
       } else {
-        console.log(\`\${bhajan.title} already exists. Skipping.\`);
+        console.log(`${bhajan.title} already exists. Skipping.`);
       }
     }
     
